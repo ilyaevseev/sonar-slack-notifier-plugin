@@ -60,6 +60,9 @@ public class SonarClient {
         MeasureHistory response = gson.fromJson(getResponse.body(), MeasureHistory.class);
         List<ProjectMeasure> result = new ArrayList<>();
 
+        if (response == null)
+            return result;
+
         for (MeasureHistoryDetails m : response.getMeasures()){
             ProjectMeasure pm = new ProjectMeasure();
             pm.setMetric(m.getMetric());
